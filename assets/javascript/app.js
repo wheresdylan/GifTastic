@@ -1,10 +1,12 @@
 $(document).ready(function(){
 
+    //declaring variables
     var word;
     var newDiv;
     var clickedWord;
     var newImage;
 
+    //creating the buttons and adding a text
     function addText(){
         event.preventDefault();
         
@@ -17,8 +19,11 @@ $(document).ready(function(){
         newDiv.text(word);
 
         $('.buttonClicks').append(newDiv);
+
+        $("#text-input").val("")
     }
 
+    //adding the gifs on button click
     function onClick(){
         $(".images").html("");
         clickedWord = ($(this).attr("text-word"));
@@ -26,6 +31,7 @@ $(document).ready(function(){
         addGifs(clickedWord);
     }
 
+    //function that takens in a word, brings up Gifs and displays them
     function addGifs(newGif){
 
         var queryUrl = "http://api.giphy.com/v1/gifs/search?q=" + newGif + "&api_key=sHZSxDX03G4XeU7saH3rQgebkmWqqiia&limit=10";
@@ -35,6 +41,7 @@ $(document).ready(function(){
             method:"GET"
         }).then(function(response){
           
+         
 
             var giphs = response.data;
         
@@ -42,10 +49,10 @@ $(document).ready(function(){
             for (var i = 0; i < giphs.length;i++){
                 newImage = $("<img>");
                 newImage.addClass("newGif");
-                newImage.attr("src", giphs[i].images.fixed_height.url);
+                newImage.attr("src", giphs[i].images.fixed_height_still.url);
 
-
-                console.log(newImage);
+                console.log(giphs[i].rating);
+               
 
                 $(".images").append(newImage);
             }
@@ -65,7 +72,7 @@ $(document).ready(function(){
 
 
 
-
+    //button clicks
     $("#add-text").on("click", addText);
     $(document).on("click", ".buttons", onClick)
 
