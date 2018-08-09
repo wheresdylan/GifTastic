@@ -35,7 +35,7 @@ $(document).ready(function () {
     //function that takens in a word, brings up Gifs and displays them
     function addGifs(newGif) {
 
-        var queryUrl = "http://api.giphy.com/v1/gifs/search?q=" + newGif + "&api_key=sHZSxDX03G4XeU7saH3rQgebkmWqqiia&limit=10";
+        var queryUrl = "https://api.giphy.com/v1/gifs/search?q=" + newGif + "&api_key=sHZSxDX03G4XeU7saH3rQgebkmWqqiia&limit=10";
 
         $.ajax({
             url: queryUrl,
